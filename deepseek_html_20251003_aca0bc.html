@@ -1,0 +1,1527 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>房产经纪人专业技巧库</title>
+    <link rel="icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><text y=%22.9em%22 font-size=%2290%22>🏠</text></svg>">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            -webkit-tap-highlight-color: transparent;
+            font-family: 'PingFang SC', 'Microsoft YaHei', 'Helvetica Neue', Arial, sans-serif;
+        }
+        
+        :root {
+            --primary: #1e5799;
+            --primary-light: #2989d8;
+            --secondary: #2e7d32;
+            --accent: #e65100;
+            --special: #9b59b6;
+            --light-bg: #f5f7fa;
+            --card-bg: #ffffff;
+            --text: #333333;
+            --text-light: #666666;
+            --shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+            --shadow-hover: 0 8px 25px rgba(0, 0, 0, 0.15);
+        }
+        
+        body {
+            background: linear-gradient(135deg, var(--light-bg) 0%, #e4edf5 100%);
+            color: var(--text);
+            line-height: 1.6;
+            min-height: 100vh;
+            padding: 0;
+            font-size: 16px;
+        }
+        
+        .container {
+            width: 100%;
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0;
+            min-height: 100vh;
+        }
+        
+        /* 头部区域 */
+        .app-header {
+            background: linear-gradient(135deg, var(--primary) 0%, var(--primary-light) 100%);
+            color: white;
+            padding: 30px 20px;
+            position: relative;
+            box-shadow: var(--shadow);
+        }
+        
+        .app-title {
+            font-size: 2.2rem;
+            font-weight: bold;
+            text-align: center;
+            margin-bottom: 12px;
+            text-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
+        }
+        
+        .app-subtitle {
+            font-size: 1.2rem;
+            opacity: 0.9;
+            text-align: center;
+            margin-bottom: 30px;
+        }
+        
+        /* 分类标签 */
+        .category-tabs {
+            display: flex;
+            justify-content: center;
+            gap: 15px;
+            margin: 25px 0;
+            flex-wrap: wrap;
+        }
+        
+        .category-tab {
+            padding: 15px 30px;
+            border-radius: 30px;
+            color: white;
+            font-weight: bold;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            font-size: 1.1rem;
+            white-space: nowrap;
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
+            border: 2px solid rgba(255, 255, 255, 0.3);
+        }
+        
+        .category-tab svg {
+            width: 22px;
+            height: 22px;
+        }
+        
+        .category-tab.property {
+            background: linear-gradient(135deg, var(--primary) 0%, #207cca 100%);
+        }
+        
+        .category-tab.client {
+            background: linear-gradient(135deg, var(--secondary) 0%, #4caf50 100%);
+        }
+        
+        .category-tab.showing {
+            background: linear-gradient(135deg, var(--accent) 0%, #ff9800 100%);
+        }
+        
+        .category-tab.customer {
+            background: linear-gradient(135deg, var(--special) 0%, #8e44ad 100%);
+            position: relative;
+            overflow: hidden;
+            animation: pulse 2s infinite;
+            border: 2px solid rgba(255, 255, 255, 0.5);
+        }
+        
+        .category-tab.customer::before {
+            content: "";
+            position: absolute;
+            top: -8px;
+            right: -8px;
+            width: 25px;
+            height: 25px;
+            background: #ffeb3b;
+            border-radius: 50%;
+            box-shadow: 0 0 20px #ffeb3b;
+            animation: sparkle 1.5s infinite;
+        }
+        
+        @keyframes pulse {
+            0% { transform: scale(1); }
+            50% { transform: scale(1.05); }
+            100% { transform: scale(1); }
+        }
+        
+        @keyframes sparkle {
+            0%, 100% { opacity: 0.7; transform: scale(1); }
+            50% { opacity: 1; transform: scale(1.2); }
+        }
+        
+        .category-tab.active {
+            box-shadow: 0 0 20px rgba(255, 255, 255, 0.6);
+            transform: scale(1.08);
+        }
+        
+        .category-tab:hover {
+            transform: translateY(-3px);
+            box-shadow: var(--shadow-hover);
+        }
+        
+        /* 统计信息 */
+        .stats-container {
+            display: flex;
+            justify-content: center;
+            gap: 25px;
+            margin: 20px 0;
+            padding: 0 20px;
+        }
+        
+        .stat-item {
+            background: rgba(255, 255, 255, 0.25);
+            padding: 15px 20px;
+            border-radius: 20px;
+            text-align: center;
+            flex: 1;
+            max-width: 200px;
+            margin: 0 10px;
+            backdrop-filter: blur(10px);
+            border: 1px solid rgba(255, 255, 255, 0.2);
+        }
+        
+        .stat-value {
+            font-size: 1.8rem;
+            font-weight: bold;
+            margin-bottom: 8px;
+        }
+        
+        .stat-label {
+            font-size: 1rem;
+            opacity: 0.9;
+        }
+        
+        .progress-bar {
+            width: 100%;
+            height: 8px;
+            background-color: rgba(255, 255, 255, 0.3);
+            border-radius: 4px;
+            margin-top: 15px;
+            overflow: hidden;
+            max-width: 800px;
+            margin-left: auto;
+            margin-right: auto;
+        }
+        
+        .progress {
+            height: 100%;
+            background: linear-gradient(to right, #ffffff, #e0f7fa);
+            border-radius: 4px;
+            transition: width 0.5s ease;
+        }
+        
+        /* 主内容区域 */
+        .main-content {
+            padding: 30px 20px;
+            flex: 1;
+        }
+        
+        .card {
+            background-color: var(--card-bg);
+            border-radius: 20px;
+            padding: 40px 35px;
+            box-shadow: var(--shadow);
+            margin-bottom: 30px;
+            transition: all 0.4s ease;
+            position: relative;
+            overflow: hidden;
+            max-width: 900px;
+            margin-left: auto;
+            margin-right: auto;
+        }
+        
+        .card::before {
+            content: "";
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 6px;
+            height: 100%;
+            background: linear-gradient(to bottom, var(--primary), #207cca);
+        }
+        
+        .tip-number {
+            text-align: center;
+            color: var(--primary);
+            font-weight: bold;
+            margin-bottom: 25px;
+            font-size: 1.3rem;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            gap: 15px;
+        }
+        
+        .category-indicator {
+            display: inline-block;
+            padding: 6px 15px;
+            background: rgba(30, 87, 153, 0.1);
+            border-radius: 20px;
+            font-size: 1rem;
+            color: var(--primary);
+            border: 1px solid rgba(30, 87, 153, 0.2);
+        }
+        
+        .tip-content {
+            font-size: 1.4rem;
+            text-align: center;
+            margin-bottom: 30px;
+            line-height: 1.8;
+            color: var(--text);
+            min-height: 120px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            padding: 0 20px;
+        }
+        
+        /* 控制按钮 */
+        .controls {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 15px;
+            margin-bottom: 30px;
+            max-width: 800px;
+            margin-left: auto;
+            margin-right: auto;
+        }
+        
+        .btn {
+            padding: 18px 25px;
+            font-size: 1.1rem;
+            border: none;
+            border-radius: 15px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 10px;
+            font-weight: bold;
+        }
+        
+        .btn-primary {
+            background: linear-gradient(135deg, var(--primary) 0%, #207cca 100%);
+            color: white;
+        }
+        
+        .btn-secondary {
+            background: linear-gradient(135deg, #6c757d 0%, #868e96 100%);
+            color: white;
+        }
+        
+        .btn-warning {
+            background: linear-gradient(135deg, #e74c3c 0%, #c0392b 100%);
+            color: white;
+        }
+        
+        .btn:hover {
+            transform: translateY(-3px);
+            box-shadow: var(--shadow-hover);
+        }
+        
+        .btn:active {
+            transform: translateY(1px);
+        }
+        
+        .btn-full {
+            grid-column: 1 / -1;
+        }
+        
+        /* 历史记录 */
+        .history-section {
+            background-color: var(--card-bg);
+            border-radius: 20px;
+            padding: 30px;
+            box-shadow: var(--shadow);
+            margin-top: 20px;
+            max-width: 900px;
+            margin-left: auto;
+            margin-right: auto;
+        }
+        
+        .history-title {
+            font-size: 1.4rem;
+            margin-bottom: 20px;
+            color: var(--primary);
+            display: flex;
+            align-items: center;
+            gap: 12px;
+        }
+        
+        .history-list {
+            max-height: 250px;
+            overflow-y: auto;
+            padding-right: 10px;
+        }
+        
+        .history-item {
+            padding: 15px 20px;
+            border-bottom: 1px solid #f0f0f0;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            cursor: pointer;
+            transition: all 0.2s ease;
+            border-radius: 10px;
+        }
+        
+        .history-item:hover {
+            background-color: #f8f9fa;
+            transform: translateX(5px);
+        }
+        
+        .history-item:last-child {
+            border-bottom: none;
+        }
+        
+        .history-index {
+            color: var(--primary);
+            font-weight: bold;
+            min-width: 50px;
+            font-size: 1.1rem;
+        }
+        
+        .history-content {
+            flex: 1;
+            overflow: hidden;
+            text-overflow: ellipsis;
+            white-space: nowrap;
+            margin: 0 15px;
+            font-size: 1rem;
+        }
+        
+        .history-category {
+            color: #6c757d;
+            font-size: 0.9rem;
+            background: #f8f9fa;
+            padding: 5px 12px;
+            border-radius: 15px;
+            border: 1px solid #e9ecef;
+        }
+        
+        /* 获客宝典特有样式 */
+        .customer-stats {
+            display: flex;
+            justify-content: space-around;
+            margin: 30px 0;
+            text-align: center;
+            gap: 20px;
+        }
+        
+        .customer-stat-item {
+            background: var(--card-bg);
+            padding: 20px;
+            border-radius: 15px;
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.08);
+            flex: 1;
+            margin: 0 10px;
+            border: 1px solid #f0f0f0;
+        }
+        
+        .customer-stat-number {
+            font-size: 2.2rem;
+            font-weight: bold;
+            margin-bottom: 8px;
+        }
+        
+        .customer-stat-number.online {
+            color: #3498db;
+        }
+        
+        .customer-stat-number.offline {
+            color: #e74c3c;
+        }
+        
+        .customer-stat-number.total {
+            color: var(--special);
+        }
+        
+        .customer-stat-label {
+            color: var(--text-light);
+            font-size: 1rem;
+        }
+        
+        .customer-search-container {
+            display: flex;
+            margin-bottom: 25px;
+            max-width: 600px;
+            margin-left: auto;
+            margin-right: auto;
+        }
+        
+        .customer-search-input {
+            flex: 1;
+            padding: 16px 20px;
+            border: 2px solid #ddd;
+            border-radius: 12px 0 0 12px;
+            font-size: 1.1rem;
+            background: var(--card-bg);
+            transition: border-color 0.3s;
+        }
+        
+        .customer-search-input:focus {
+            outline: none;
+            border-color: var(--primary);
+        }
+        
+        .customer-search-button {
+            background-color: var(--special);
+            color: white;
+            border: none;
+            padding: 0 25px;
+            border-radius: 0 12px 12px 0;
+            cursor: pointer;
+            transition: background-color 0.3s;
+            font-size: 1.1rem;
+            font-weight: bold;
+        }
+        
+        .customer-search-button:hover {
+            background-color: #8e44ad;
+        }
+        
+        .methods-container {
+            margin-top: 30px;
+        }
+        
+        .methods-column-title {
+            font-size: 1.3rem;
+            font-weight: bold;
+            margin-bottom: 20px;
+            padding: 12px 20px;
+            border-radius: 12px;
+            text-align: center;
+        }
+        
+        .methods-column-title.online {
+            background: linear-gradient(135deg, #3498db, #2980b9);
+            color: white;
+        }
+        
+        .methods-column-title.offline {
+            background: linear-gradient(135deg, #e74c3c, #c0392b);
+            color: white;
+        }
+        
+        .method-card {
+            background: var(--card-bg);
+            border-radius: 15px;
+            padding: 25px;
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.08);
+            margin-bottom: 20px;
+            position: relative;
+            transition: all 0.3s ease;
+            border: 1px solid #f0f0f0;
+        }
+        
+        .method-card:hover {
+            transform: translateY(-5px);
+            box-shadow: var(--shadow-hover);
+        }
+        
+        .method-card.online {
+            border-left: 5px solid #3498db;
+            background: linear-gradient(to bottom right, var(--card-bg), #e8f4fd);
+        }
+        
+        .method-card.offline {
+            border-left: 5px solid #e74c3c;
+            background: linear-gradient(to bottom right, var(--card-bg), #fdedec);
+        }
+        
+        .method-type {
+            position: absolute;
+            top: 20px;
+            right: 20px;
+            padding: 6px 12px;
+            border-radius: 15px;
+            font-size: 0.8rem;
+            font-weight: bold;
+        }
+        
+        .method-type.online {
+            background-color: #3498db;
+            color: white;
+        }
+        
+        .method-type.offline {
+            background-color: #e74c3c;
+            color: white;
+        }
+        
+        .method-name {
+            font-size: 1.3rem;
+            margin-bottom: 15px;
+            color: #2c3e50;
+            font-weight: bold;
+            padding-right: 100px;
+        }
+        
+        .method-desc {
+            margin-bottom: 20px;
+            color: var(--text-light);
+            line-height: 1.6;
+            font-size: 1rem;
+        }
+        
+        .method-tags {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 8px;
+            margin-top: 15px;
+        }
+        
+        .tag {
+            padding: 6px 12px;
+            border-radius: 15px;
+            font-size: 0.8rem;
+            font-weight: bold;
+        }
+        
+        .tag.online {
+            background-color: #d6eaf8;
+            color: #2874a6;
+            border: 1px solid #aed6f1;
+        }
+        
+        .tag.offline {
+            background-color: #fadbd8;
+            color: #922b21;
+            border: 1px solid #f5b7b1;
+        }
+        
+        .customer-export-btn {
+            background: linear-gradient(135deg, var(--special) 0%, #8e44ad 100%);
+            color: white;
+        }
+        
+        .customer-fetch-btn {
+            background: linear-gradient(135deg, #2ecc71 0%, #27ae60 100%);
+            color: white;
+        }
+        
+        .loading {
+            display: none;
+            text-align: center;
+            padding: 30px;
+            background: var(--card-bg);
+            border-radius: 15px;
+            margin: 25px 0;
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.08);
+            border: 1px solid #f0f0f0;
+        }
+        
+        .spinner {
+            border: 5px solid #f3f3f3;
+            border-top: 5px solid #3498db;
+            border-radius: 50%;
+            width: 50px;
+            height: 50px;
+            animation: spin 1s linear infinite;
+            margin: 0 auto 20px;
+        }
+        
+        @keyframes spin {
+            0% { transform: rotate(0deg); }
+            100% { transform: rotate(360deg); }
+        }
+        
+        .new-methods-container {
+            display: none;
+            margin-top: 40px;
+        }
+        
+        .new-method-card {
+            background: linear-gradient(to bottom right, var(--card-bg), #e8f6f3);
+            border-left: 5px solid #2ecc71;
+        }
+        
+        .new-method-badge {
+            background-color: #2ecc71;
+            color: white;
+            padding: 3px 8px;
+            border-radius: 12px;
+            font-size: 0.7rem;
+            margin-left: 8px;
+        }
+        
+        .center {
+            text-align: center;
+        }
+        
+        /* 底部区域 */
+        .app-footer {
+            text-align: center;
+            padding: 25px 20px;
+            color: var(--text-light);
+            font-size: 1rem;
+            background: var(--card-bg);
+            border-top: 1px solid #f0f0f0;
+            margin-top: 30px;
+        }
+        
+        .creator {
+            text-align: center;
+            margin: 30px 0;
+            font-family: "华文行楷", "楷体", "STXingkai", "Xingkai SC", serif;
+            font-size: 2rem;
+            color: var(--primary);
+            font-weight: bold;
+            text-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+        }
+        
+        /* 动画效果 */
+        .fade-in {
+            animation: fadeIn 0.5s ease-in;
+        }
+        
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(20px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+        
+        /* 响应式调整 - 移动端 */
+        @media (max-width: 768px) {
+            .app-header {
+                padding: 20px 15px;
+            }
+            
+            .app-title {
+                font-size: 1.6rem;
+            }
+            
+            .app-subtitle {
+                font-size: 1rem;
+            }
+            
+            .category-tabs {
+                flex-direction: column;
+                align-items: center;
+                gap: 10px;
+            }
+            
+            .category-tab {
+                width: 100%;
+                max-width: 280px;
+                justify-content: center;
+                padding: 12px 20px;
+                font-size: 1rem;
+            }
+            
+            .stats-container {
+                flex-direction: column;
+                align-items: center;
+                gap: 15px;
+            }
+            
+            .stat-item {
+                width: 100%;
+                max-width: 250px;
+            }
+            
+            .card {
+                padding: 25px 20px;
+                margin: 0 10px 20px 10px;
+            }
+            
+            .tip-content {
+                font-size: 1.1rem;
+                min-height: 100px;
+            }
+            
+            .controls {
+                grid-template-columns: 1fr 1fr;
+                gap: 12px;
+            }
+            
+            .btn {
+                padding: 14px 20px;
+                font-size: 1rem;
+            }
+            
+            .btn-full {
+                grid-column: 1 / -1;
+            }
+            
+            .history-section {
+                padding: 20px;
+                margin: 0 10px;
+            }
+            
+            .history-item {
+                flex-direction: column;
+                gap: 8px;
+                text-align: center;
+            }
+            
+            .history-index {
+                min-width: auto;
+            }
+            
+            .customer-stats {
+                flex-direction: column;
+                gap: 15px;
+            }
+            
+            .customer-stat-item {
+                margin: 0;
+            }
+            
+            .customer-search-container {
+                flex-direction: column;
+            }
+            
+            .customer-search-input {
+                border-radius: 12px 12px 0 0;
+            }
+            
+            .customer-search-button {
+                border-radius: 0 0 12px 12px;
+                padding: 14px;
+            }
+            
+            .method-card {
+                padding: 20px;
+            }
+            
+            .method-name {
+                font-size: 1.1rem;
+                padding-right: 0;
+            }
+            
+            .method-type {
+                position: relative;
+                top: auto;
+                right: auto;
+                margin-bottom: 10px;
+                display: inline-block;
+            }
+            
+            .creator {
+                font-size: 1.5rem;
+            }
+        }
+        
+        @media (max-width: 480px) {
+            .app-title {
+                font-size: 1.4rem;
+            }
+            
+            .tip-content {
+                font-size: 1rem;
+            }
+            
+            .controls {
+                grid-template-columns: 1fr;
+            }
+            
+            .btn {
+                font-size: 0.95rem;
+                padding: 12px 18px;
+            }
+        }
+        
+        /* 大屏幕优化 */
+        @media (min-width: 1400px) {
+            .container {
+                max-width: 1300px;
+            }
+            
+            .app-title {
+                font-size: 2.5rem;
+            }
+            
+            .card {
+                max-width: 1000px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <header class="app-header">
+            <h1 class="app-title">房产经纪人专业技巧库</h1>
+            <p class="app-subtitle">房源管理 · 客源管理 · 带客技巧 · 获客宝典 · 精华浓缩版</p>
+            
+            <div class="category-tabs">
+                <div class="category-tab property active" onclick="switchCategory('property')">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="22" height="22" fill="currentColor" viewBox="0 0 16 16">
+                        <path d="M8.707 1.5a1 1 0 0 0-1.414 0L.646 8.146a.5.5 0 0 0 .708.708L8 2.207l6.646 6.647a.5.5 0 0 0 .708-.708L13 5.793V2.5a.5.5 0 0 0-.5-.5h-1a.5.5 0 0 0-.5.5v1.293L8.707 1.5Z"/>
+                        <path d="m8 3.293 6 6V13.5a1.5 1.5 0 0 1-1.5 1.5h-9A1.5 1.5 0 0 1 2 13.5V9.293l6-6Z"/>
+                    </svg>
+                    房源管理技巧
+                </div>
+                <div class="category-tab client" onclick="switchCategory('client')">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="22" height="22" fill="currentColor" viewBox="0 0 16 16">
+                        <path d="M3 14s-1 0-1-1 1-4 6-4 6 3 6 4-1 1-1 1H3Zm5-6a3 3 0 1 0 0-6 3 3 0 0 0 0 6Z"/>
+                    </svg>
+                    客源管理技巧
+                </div>
+                <div class="category-tab showing" onclick="switchCategory('showing')">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="22" height="22" fill="currentColor" viewBox="0 0 16 16">
+                        <path d="M10.5 8a2.5 2.5 0 1 1-5 0 2.5 2.5 0 0 1 5 0z"/>
+                        <path d="M0 8s3-5.5 8-5.5S16 8 16 8s-3 5.5-8 5.5S0 8 0 8zm8 3.5a3.5 3.5 0 1 0 0-7 3.5 3.5 0 0 0 0 7z"/>
+                    </svg>
+                    带客技巧
+                </div>
+                <div class="category-tab customer" onclick="switchCategory('customer')">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="22" height="22" fill="currentColor" viewBox="0 0 16 16">
+                        <path d="M14.5 3a.5.5 0 0 1 .5.5v9a.5.5 0 0 1-.5.5h-13a.5.5 0 0 1-.5-.5v-9a.5.5 0 0 1 .5-.5h13zm-13-1A1.5 1.5 0 0 0 0 3.5v9A1.5 1.5 0 0 0 1.5 14h13a1.5 1.5 0 0 0 1.5-1.5v-9A1.5 1.5 0 0 0 14.5 2h-13z"/>
+                        <path d="M3 5.5a.5.5 0 0 1 .5-.5h9a.5.5 0 0 1 0 1h-9a.5.5 0 0 1-.5-.5zM3 8a.5.5 0 0 1 .5-.5h9a.5.5 0 0 1 0 1h-9A.5.5 0 0 1 3 8zm0 2.5a.5.5 0 0 1 .5-.5h6a.5.5 0 0 1 0 1h-6a.5.5 0 0 1-.5-.5z"/>
+                    </svg>
+                    获客宝典
+                </div>
+            </div>
+            
+            <div class="stats-container">
+                <div class="stat-item">
+                    <div class="stat-value" id="total-count">30</div>
+                    <div class="stat-label">技巧总数</div>
+                </div>
+                <div class="stat-item">
+                    <div class="stat-value" id="viewed-count">0</div>
+                    <div class="stat-label">已浏览</div>
+                </div>
+                <div class="stat-item">
+                    <div class="stat-value" id="remaining-count">30</div>
+                    <div class="stat-label">剩余</div>
+                </div>
+            </div>
+            <div class="progress-bar">
+                <div class="progress" id="progress-bar" style="width: 0%"></div>
+            </div>
+        </header>
+        
+        <main class="main-content">
+            <!-- 技巧展示区域 -->
+            <div class="card" id="tips-card">
+                <div class="tip-number">
+                    技巧 #<span id="tip-counter">0</span>/10
+                    <span class="category-indicator" id="category-indicator">房源管理</span>
+                </div>
+                <div class="tip-content" id="tip-content">选择上方分类，点击按钮开始探索精华技巧</div>
+                
+                <div class="controls">
+                    <button class="btn btn-primary" id="random-btn" onclick="showRandomTip()">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" fill="currentColor" viewBox="0 0 16 16">
+                            <path d="M8 3a5 5 0 1 0 4.546 2.914.5.5 0 0 1 .908-.417A6 6 0 1 1 8 2v1z"/>
+                            <path d="M8 4.466V.534a.25.25 0 0 1 .41-.192l2.36 1.966c.12.1.12.284 0 .384L8.41 4.658A.25.25 0 0 1 8 4.466z"/>
+                        </svg>
+                        随机技巧
+                    </button>
+                    <button class="btn btn-secondary" id="prev-btn" onclick="showPrevTip()">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" fill="currentColor" viewBox="0 0 16 16">
+                            <path fill-rule="evenodd" d="M11.354 1.646a.5.5 0 0 1 0 .708L5.707 8l5.647 5.646a.5.5 0 0 1-.708.708l-6-6a.5.5 0 0 1 0-.708l6-6a.5.5 0 0 1 .708 0z"/>
+                        </svg>
+                        上一个
+                    </button>
+                    <button class="btn btn-secondary" id="next-btn" onclick="showNextTip()">
+                        下一个
+                        <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" fill="currentColor" viewBox="0 0 16 16">
+                            <path fill-rule="evenodd" d="M4.646 1.646a.5.5 0 0 1 .708 0l6 6a.5.5 0 0 1 0 .708l-6 6a.5.5 0 0 1-.708-.708L10.293 8 4.646 2.354a.5.5 0 0 1 0-.708z"/>
+                        </svg>
+                    </button>
+                    <button class="btn btn-warning btn-full" onclick="resetProgress()">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" fill="currentColor" viewBox="0 0 16 16">
+                            <path d="M8 3a5 5 0 1 0 4.546 2.914.5.5 0 0 1 .908-.417A6 6 0 1 1 8 2v1z"/>
+                            <path d="M8 4.466V.534a.25.25 0 0 1 .41-.192l2.36 1.966c.12.1.12.284 0 .384L8.41 4.658A.25.25 0 0 1 8 4.466z"/>
+                        </svg>
+                        重置进度
+                    </button>
+                </div>
+            </div>
+            
+            <!-- 获客宝典区域 -->
+            <div class="card" id="customer-card" style="display: none;">
+                <h2 class="tip-number">获客宝典 <span class="category-indicator">6种获客方法</span></h2>
+                
+                <div class="customer-stats">
+                    <div class="customer-stat-item">
+                        <div class="customer-stat-number total" id="customer-total-methods">6</div>
+                        <div class="customer-stat-label">获客方法总数</div>
+                    </div>
+                    <div class="customer-stat-item">
+                        <div class="customer-stat-number online" id="customer-online-methods">2</div>
+                        <div class="customer-stat-label">线上方法</div>
+                    </div>
+                    <div class="customer-stat-item">
+                        <div class="customer-stat-number offline" id="customer-offline-methods">4</div>
+                        <div class="customer-stat-label">线下方法</div>
+                    </div>
+                </div>
+                
+                <div class="customer-search-container">
+                    <input type="text" class="customer-search-input" id="customer-search-input" placeholder="搜索获客方法...">
+                    <button class="customer-search-button" id="customer-search-button">搜索</button>
+                </div>
+                
+                <div class="center" style="margin: 25px 0;">
+                    <button class="btn customer-fetch-btn" id="customer-fetch-btn">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" fill="currentColor" viewBox="0 0 16 16">
+                            <path d="M8 3a5 5 0 1 0 4.546 2.914.5.5 0 0 1 .908-.417A6 6 0 1 1 8 2v1z"/>
+                            <path d="M8 4.466V.534a.25.25 0 0 1 .41-.192l2.36 1.966c.12.1.12.284 0 .384L8.41 4.658A.25.25 0 0 1 8 4.466z"/>
+                        </svg>
+                        联网获取新方法
+                    </button>
+                </div>
+                
+                <div class="loading" id="customer-loading">
+                    <div class="spinner"></div>
+                    <p>正在获取最新的获客方法...</p>
+                </div>
+                
+                <div class="methods-container">
+                    <div class="methods-column-title online">线上获客方法</div>
+                    <div id="online-methods-container">
+                        <!-- 线上方法卡片将通过JavaScript动态生成 -->
+                    </div>
+                    
+                    <div class="methods-column-title offline">线下获客方法</div>
+                    <div id="offline-methods-container">
+                        <!-- 线下方法卡片将通过JavaScript动态生成 -->
+                    </div>
+                </div>
+                
+                <div class="new-methods-container" id="new-methods-container">
+                    <h3 style="color: #2ecc71; margin: 25px 0 15px; text-align: center;">新获取的方法</h3>
+                    <div id="new-methods-container-inner">
+                        <div class="methods-column-title online">线上新方法</div>
+                        <div id="new-online-methods-container">
+                            <!-- 新线上方法卡片将通过JavaScript动态生成 -->
+                        </div>
+                        
+                        <div class="methods-column-title offline">线下新方法</div>
+                        <div id="new-offline-methods-container">
+                            <!-- 新线下方法卡片将通过JavaScript动态生成 -->
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="controls" style="margin-top: 30px;">
+                    <button class="btn customer-export-btn btn-full" id="customer-export-btn">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" fill="currentColor" viewBox="0 0 16 16">
+                            <path d="M.5 9.9a.5.5 0 0 1 .5.5v2.5a1 1 0 0 0 1 1h12a1 1 0 0 0 1-1v-2.5a.5.5 0 0 1 1 0v2.5a2 2 0 0 1-2 2H2a2 2 0 0 1-2-2v-2.5a.5.5 0 0 1 .5-.5z"/>
+                            <path d="M7.646 11.854a.5.5 0 0 0 .708 0l3-3a.5.5 0 0 0-.708-.708L8.5 10.293V1.5a.5.5 0 0 0-1 0v8.793L5.354 8.146a.5.5 0 1 0-.708.708l3 3z"/>
+                        </svg>
+                        导出获客宝典
+                    </button>
+                </div>
+            </div>
+            
+            <div class="history-section">
+                <h2 class="history-title">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="22" height="22" fill="currentColor" viewBox="0 0 16 16">
+                        <path d="M8.515 1.019A7 7 0 0 0 8 1V0a8 8 0 0 1 .589.022l-.074.997zm2.004.45a7.003 7.003 0 0 0-.985-.299l.219-.976c.383.086.76.2 1.126.342l-.36.933zm1.37.71a7.01 7.01 0 0 0-.439-.27l.493-.87a8.025 8.025 0 0 1 .979.654l-.615.789a6.996 6.996 0 0 0-.418-.302zm1.834 1.79a6.99 6.99 0 0 0-.653-.796l.724-.69c.27.285.52.59.747.91l-.818.576zm.744 1.352a7.08 7.08 0 0 0-.214-.468l.893-.45a7.976 7.976 0 0 1 .45 1.088l-.95.313a7.023 7.023 0 0 0-.179-.483zm.53 2.507a6.991 6.991 0 0 0-.1-1.025l.985-.17c.067.386.106.778.116 1.17l-1 .025zm-.131 1.538c.033-.17.06-.339.081-.51l.993.123a7.957 7.957 0 0 1-.23 1.155l-.964-.267c.046-.165.086-.332.12-.501zm-.952 2.379c.184-.29.346-.594.486-.908l.914.405c-.16.36-.345.706-.555 1.038l-.845-.535zm-.964 1.205c.122-.122.239-.248.35-.378l.758.653a8.073 8.073 0 0 1-.401.432l-.707-.707z"/>
+                        <path d="M8 1a7 7 0 1 0 4.95 11.95l.707.707A8.001 8.001 0 1 1 8 0v1z"/>
+                        <path d="M7.5 3a.5.5 0 0 1 .5.5v5.21l3.248 1.856a.5.5 0 0 1-.496.868l-3.5-2A.5.5 0 0 1 7 9V3.5a.5.5 0 0 1 .5-.5z"/>
+                    </svg>
+                    最近浏览的技巧
+                </h2>
+                <div class="history-list" id="history-list">
+                    <div class="history-item">
+                        <span>尚未浏览任何技巧</span>
+                    </div>
+                </div>
+            </div>
+        </main>
+        
+        <div class="creator">制作人：周铁林 18522118217</div>
+        
+        <footer class="app-footer">
+            <p>房产经纪人专业工具 | 精华技巧 + 获客宝典助您成为行业精英</p>
+        </footer>
+    </div>
+
+    <script>
+        // 技巧分类 - 精华浓缩版
+        const categories = {
+            property: {
+                name: '房源管理',
+                tips: [
+                    "建立完整房源档案，包含房屋状况、产权信息和历史交易记录",
+                    "定期更新房源照片和视频，真实展示房屋现状",
+                    "进行市场分析，制定合理的房源定价策略",
+                    "建立房源维护体系，定期检查并及时维修",
+                    "创建房源分类系统，快速匹配客户需求",
+                    "与房东保持良好沟通，了解其期望和动态",
+                    "使用专业软件高效管理房源信息",
+                    "定期调研市场，掌握同类房源价格走势",
+                    "制定个性化营销方案，突出房源特色",
+                    "建立房源评估机制，定期重新评估价值"
+                ]
+            },
+            client: {
+                name: '客源管理',
+                tips: [
+                    "建立详细客户档案，记录需求偏好和预算信息",
+                    "定期与客户保持联系，了解需求变化",
+                    "使用CRM系统高效管理客户信息",
+                    "对客户进行分类管理，制定差异化服务策略",
+                    "定期发送市场资讯，保持客户粘性",
+                    "建立客户推荐机制，扩大客户来源",
+                    "记录客户反馈意见，持续改进服务",
+                    "分析客户数据，发现潜在需求和商机",
+                    "提供专业房产咨询服务，建立信任",
+                    "建立客户满意度评价体系，提升服务质量"
+                ]
+            },
+            showing: {
+                name: '带客技巧',
+                tips: [
+                    "提前到达熟悉环境，介绍社区配套设施",
+                    "准备多套不同房源，提供更多选择",
+                    "带看前与房东沟通，了解房屋亮点",
+                    "准备贴心物品，提升服务体验",
+                    "介绍外部环境和楼栋特点",
+                    "引导客户想象在此生活场景",
+                    "重点展示采光通风和空间布局",
+                    "根据家庭成员情况强调适用性",
+                    "了解小区成交数据，增强信心",
+                    "观察客户反应，调整介绍重点"
+                ]
+            },
+            customer: {
+                name: '获客宝典',
+                tips: []
+            }
+        };
+
+        // 获客宝典数据
+        let customerMethods = [
+            {
+                id: 1,
+                name: "社区驻守",
+                type: "线下传统",
+                description: "在目标社区设立咨询点，定期值班，提供免费房产咨询服务。",
+                tags: ["低成本", "高信任度", "精准获客"],
+                category: "offline"
+            },
+            {
+                id: 2,
+                name: "老客户转介绍",
+                type: "私域运营",
+                description: "通过提供超预期服务，建立客户信任，设置推荐奖励机制鼓励转介绍。",
+                tags: ["高转化率", "低成本", "可持续"],
+                category: "offline"
+            },
+            {
+                id: 3,
+                name: "门店自然来访",
+                type: "线下传统",
+                description: "选择临街旺铺，保持专业形象，橱窗展示精美房源吸引客户。",
+                tags: ["品牌曝光", "周边客源", "即时咨询"],
+                category: "offline"
+            },
+            {
+                id: 4,
+                name: "商机线索购买",
+                type: "线上平台",
+                description: "向房产平台付费获取精准购房线索，快速建立客户联系。",
+                tags: ["快速获客", "精准线索", "需预算"],
+                category: "online"
+            },
+            {
+                id: 5,
+                name: "行业联盟合作",
+                type: "资源整合",
+                description: "联合家装、金融、法律等行业，互相推荐客户，实现资源共享。",
+                tags: ["跨界合作", "资源互补", "精准互推"],
+                category: "offline"
+            },
+            {
+                id: 6,
+                name: "社交媒体营销",
+                type: "线上平台",
+                description: "利用微信、微博等社交平台发布房源信息，建立专业形象。",
+                tags: ["覆盖面广", "互动性强", "内容为王"],
+                category: "online"
+            }
+        ];
+
+        // 模拟从网络获取的新方法
+        const onlineMethods = [
+            {
+                id: 101,
+                name: "VR沉浸式看房",
+                type: "技术赋能",
+                description: "利用VR技术打造沉浸式看房体验，让客户足不出户即可感受房源真实环境。",
+                tags: ["科技感", "便捷体验", "高转化"],
+                category: "online",
+                isNew: true
+            },
+            {
+                id: 102,
+                name: "抖音同城号运营",
+                type: "内容平台",
+                description: "运营抖音同城号，发布房源视频和房产知识，吸引本地精准客户。",
+                tags: ["精准流量", "内容营销", "年轻客群"],
+                category: "online",
+                isNew: true
+            }
+        ];
+
+        // 全局变量
+        let currentCategory = 'property';
+        let currentTipIndex = -1;
+        let viewedTips = {
+            property: new Set(),
+            client: new Set(),
+            showing: new Set()
+        };
+        let history = [];
+        
+        // DOM元素
+        const tipsCard = document.getElementById('tips-card');
+        const customerCard = document.getElementById('customer-card');
+        const onlineMethodsContainer = document.getElementById('online-methods-container');
+        const offlineMethodsContainer = document.getElementById('offline-methods-container');
+        const newMethodsContainer = document.getElementById('new-methods-container');
+        const newOnlineMethodsContainer = document.getElementById('new-online-methods-container');
+        const newOfflineMethodsContainer = document.getElementById('new-offline-methods-container');
+        const customerSearchInput = document.getElementById('customer-search-input');
+        const customerSearchButton = document.getElementById('customer-search-button');
+        const customerExportBtn = document.getElementById('customer-export-btn');
+        const customerFetchBtn = document.getElementById('customer-fetch-btn');
+        const customerLoading = document.getElementById('customer-loading');
+        const randomBtn = document.getElementById('random-btn');
+        const prevBtn = document.getElementById('prev-btn');
+        const nextBtn = document.getElementById('next-btn');
+
+        // 切换分类
+        function switchCategory(category) {
+            currentCategory = category;
+            
+            // 更新标签状态
+            document.querySelectorAll('.category-tab').forEach(tab => {
+                tab.classList.remove('active');
+            });
+            document.querySelector(`.category-tab.${category}`).classList.add('active');
+            
+            // 更新分类指示器
+            document.getElementById('category-indicator').textContent = categories[category].name;
+            
+            // 如果是获客宝典，显示特殊界面
+            if (category === 'customer') {
+                tipsCard.style.display = 'none';
+                customerCard.style.display = 'block';
+                customerExportBtn.style.display = 'flex';
+                
+                // 渲染获客方法
+                renderCustomerMethods(customerMethods);
+                updateCustomerStats();
+            } else {
+                tipsCard.style.display = 'block';
+                customerCard.style.display = 'none';
+                customerExportBtn.style.display = 'none';
+                
+                currentTipIndex = -1;
+                updateStats();
+                document.getElementById('tip-content').textContent = `已切换到${categories[category].name}，点击按钮获取技巧`;
+                document.getElementById('tip-counter').textContent = '0';
+                document.getElementById('progress-bar').style.width = '0%';
+            }
+        }
+        
+        // 渲染获客方法
+        function renderCustomerMethods(methods) {
+            onlineMethodsContainer.innerHTML = '';
+            offlineMethodsContainer.innerHTML = '';
+            
+            methods.forEach(method => {
+                const methodCard = document.createElement('div');
+                methodCard.className = `method-card ${method.category}`;
+                
+                methodCard.innerHTML = `
+                    <div class="method-type ${method.category}">${method.type}</div>
+                    <h3 class="method-name">${method.name}</h3>
+                    <p class="method-desc">${method.description}</p>
+                    <div class="method-tags">
+                        ${method.tags.map(tag => `<span class="tag ${method.category}">${tag}</span>`).join('')}
+                    </div>
+                `;
+                
+                if (method.category === 'online') {
+                    onlineMethodsContainer.appendChild(methodCard);
+                } else {
+                    offlineMethodsContainer.appendChild(methodCard);
+                }
+            });
+        }
+        
+        // 更新获客宝典统计数据
+        function updateCustomerStats() {
+            const onlineCount = customerMethods.filter(m => m.category === 'online').length;
+            const offlineCount = customerMethods.filter(m => m.category === 'offline').length;
+            
+            document.getElementById('customer-total-methods').textContent = customerMethods.length;
+            document.getElementById('customer-online-methods').textContent = onlineCount;
+            document.getElementById('customer-offline-methods').textContent = offlineCount;
+        }
+        
+        // 搜索获客方法
+        function searchCustomerMethods() {
+            const searchTerm = customerSearchInput.value.toLowerCase().trim();
+            
+            if (searchTerm === '') {
+                renderCustomerMethods(customerMethods);
+                return;
+            }
+            
+            const filteredMethods = customerMethods.filter(method => 
+                method.name.toLowerCase().includes(searchTerm) ||
+                method.type.toLowerCase().includes(searchTerm) ||
+                method.description.toLowerCase().includes(searchTerm) ||
+                method.tags.some(tag => tag.toLowerCase().includes(searchTerm))
+            );
+            
+            renderCustomerMethods(filteredMethods);
+        }
+        
+        // 模拟获取在线方法
+        function fetchOnlineMethods() {
+            customerLoading.style.display = 'block';
+            customerFetchBtn.disabled = true;
+            
+            // 模拟网络延迟
+            setTimeout(() => {
+                customerLoading.style.display = 'none';
+                customerFetchBtn.disabled = false;
+                
+                // 渲染新方法
+                newOnlineMethodsContainer.innerHTML = '';
+                newOfflineMethodsContainer.innerHTML = '';
+                
+                onlineMethods.forEach(method => {
+                    const methodCard = document.createElement('div');
+                    methodCard.className = `method-card ${method.category} new-method-card`;
+                    
+                    methodCard.innerHTML = `
+                        <div class="method-type ${method.category}">${method.type} <span class="new-method-badge">新</span></div>
+                        <h3 class="method-name">${method.name}</h3>
+                        <p class="method-desc">${method.description}</p>
+                        <div class="method-tags">
+                            ${method.tags.map(tag => `<span class="tag ${method.category}">${tag}</span>`).join('')}
+                        </div>
+                        <button class="btn customer-fetch-btn" style="margin-top: 15px; width: 100%;" onclick="addToCustomerMethods(${method.id})">
+                            <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" viewBox="0 0 16 16">
+                                <path d="M8 4a.5.5 0 0 1 .5.5v3h3a.5.5 0 0 1 0 1h-3v3a.5.5 0 0 1-1 0v-3h-3a.5.5 0 0 1 0-1h3v-3A.5.5 0 0 1 8 4z"/>
+                            </svg>
+                            添加到获客宝典
+                        </button>
+                    `;
+                    
+                    if (method.category === 'online') {
+                        newOnlineMethodsContainer.appendChild(methodCard);
+                    } else {
+                        newOfflineMethodsContainer.appendChild(methodCard);
+                    }
+                });
+                
+                newMethodsContainer.style.display = 'block';
+                
+                // 滚动到新方法区域
+                newMethodsContainer.scrollIntoView({ behavior: 'smooth' });
+                
+                // 显示成功消息
+                alert(`成功获取 ${onlineMethods.length} 种新方法！`);
+            }, 2000);
+        }
+        
+        // 添加到获客宝典
+        function addToCustomerMethods(methodId) {
+            const method = onlineMethods.find(m => m.id === methodId);
+            
+            if (method && !customerMethods.some(m => m.id === methodId)) {
+                // 移除isNew属性，因为现在它是本地方法了
+                const { isNew, ...methodWithoutNew } = method;
+                customerMethods.push(methodWithoutNew);
+                
+                // 重新渲染方法
+                renderCustomerMethods(customerMethods);
+                updateCustomerStats();
+                
+                // 从新方法列表中移除
+                const methodCard = document.querySelector(`[onclick="addToCustomerMethods(${methodId})"]`).parentElement;
+                methodCard.style.display = 'none';
+                
+                alert(`"${method.name}" 已添加到您的获客宝典！`);
+            } else {
+                alert('此方法已存在于您的获客宝典中！');
+            }
+        }
+        
+        // 导出获客宝典为DOC格式
+        function exportCustomerMethods() {
+            alert('获客宝典导出功能已触发！在实际应用中，这里会生成DOC文件供下载。');
+        }
+
+        // 获取随机技巧
+        function getRandomTip() {
+            const tips = categories[currentCategory].tips;
+            let newIndex;
+            do {
+                newIndex = Math.floor(Math.random() * tips.length);
+            } while (newIndex === currentTipIndex && tips.length > 1);
+            
+            currentTipIndex = newIndex;
+            
+            // 添加到已浏览集合
+            if (!viewedTips[currentCategory].has(currentTipIndex)) {
+                viewedTips[currentCategory].add(currentTipIndex);
+                updateStats();
+            }
+            
+            // 添加到历史记录
+            addToHistory(currentTipIndex, currentCategory);
+            
+            return tips[currentTipIndex];
+        }
+        
+        // 获取上一个技巧
+        function getPrevTip() {
+            if (history.length < 2) {
+                return categories[currentCategory].tips[currentTipIndex];
+            }
+            
+            // 移除当前项
+            history.pop();
+            // 获取上一项
+            const prevItem = history.pop();
+            
+            currentTipIndex = prevItem.index;
+            currentCategory = prevItem.category;
+            
+            // 更新分类显示
+            switchCategory(currentCategory);
+            
+            addToHistory(currentTipIndex, currentCategory);
+            
+            return categories[currentCategory].tips[currentTipIndex];
+        }
+        
+        // 添加到历史记录
+        function addToHistory(index, category) {
+            history.push({index, category});
+            
+            // 限制历史记录长度
+            if (history.length > 10) {
+                history.shift();
+            }
+            
+            updateHistoryDisplay();
+        }
+        
+        // 更新历史记录显示
+        function updateHistoryDisplay() {
+            const historyList = document.getElementById('history-list');
+            historyList.innerHTML = '';
+            
+            if (history.length === 0) {
+                historyList.innerHTML = '<div class="history-item"><span>尚未浏览任何技巧</span></div>';
+                return;
+            }
+            
+            // 显示最近的历史记录（最新的在前面）
+            const reversedHistory = [...history].reverse();
+            reversedHistory.forEach((item, i) => {
+                const historyItem = document.createElement('div');
+                historyItem.className = 'history-item';
+                historyItem.innerHTML = `
+                    <span class="history-index">#${item.index + 1}</span>
+                    <span class="history-content">${categories[item.category].tips[item.index].substring(0, 30)}...</span>
+                    <span class="history-category">${categories[item.category].name}</span>
+                `;
+                
+                // 点击历史记录项可以跳转到该技巧
+                historyItem.addEventListener('click', () => {
+                    currentTipIndex = item.index;
+                    switchCategory(item.category);
+                    updateTipDisplay();
+                });
+                
+                historyList.appendChild(historyItem);
+            });
+        }
+        
+        // 更新统计信息
+        function updateStats() {
+            const viewed = viewedTips[currentCategory].size;
+            const total = categories[currentCategory].tips.length;
+            
+            document.getElementById('viewed-count').textContent = viewed;
+            document.getElementById('remaining-count').textContent = total - viewed;
+            document.getElementById('total-count').textContent = total;
+            
+            // 更新进度条
+            const progress = (viewed / total) * 100;
+            document.getElementById('progress-bar').style.width = `${progress}%`;
+        }
+        
+        // 更新技巧显示
+        function updateTipDisplay() {
+            const tipContent = document.getElementById('tip-content');
+            tipContent.classList.remove('fade-in');
+            
+            setTimeout(() => {
+                tipContent.textContent = categories[currentCategory].tips[currentTipIndex];
+                document.getElementById('tip-counter').textContent = currentTipIndex + 1;
+                tipContent.classList.add('fade-in');
+            }, 150);
+        }
+        
+        // 显示随机技巧
+        function showRandomTip() {
+            const tip = getRandomTip();
+            updateTipDisplay();
+        }
+        
+        // 显示上一个技巧
+        function showPrevTip() {
+            const tip = getPrevTip();
+            updateTipDisplay();
+        }
+        
+        // 显示下一个技巧
+        function showNextTip() {
+            const tip = getRandomTip();
+            updateTipDisplay();
+        }
+        
+        // 重置进度
+        function resetProgress() {
+            if (confirm('确定要重置当前分类的浏览进度吗？这将清空已浏览记录。')) {
+                viewedTips[currentCategory] = new Set();
+                updateStats();
+                updateTipDisplay();
+                alert('进度已重置！');
+            }
+        }
+
+        // 事件监听
+        customerSearchButton.addEventListener('click', searchCustomerMethods);
+        customerSearchInput.addEventListener('keyup', (event) => {
+            if (event.key === 'Enter') {
+                searchCustomerMethods();
+            }
+        });
+        customerFetchBtn.addEventListener('click', fetchOnlineMethods);
+        customerExportBtn.addEventListener('click', exportCustomerMethods);
+
+        // 页面加载时初始化
+        window.onload = function() {
+            switchCategory('property');
+            updateStats();
+            updateHistoryDisplay();
+            
+            // 添加触摸反馈
+            document.querySelectorAll('.btn, .category-tab, .history-item, .method-card').forEach(element => {
+                element.addEventListener('touchstart', function() {
+                    this.style.opacity = '0.7';
+                });
+                element.addEventListener('touchend', function() {
+                    this.style.opacity = '1';
+                });
+            });
+        };
+        
+        // 将函数暴露给全局作用域
+        window.addToCustomerMethods = addToCustomerMethods;
+    </script>
+</body>
+</html>
